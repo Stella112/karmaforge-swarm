@@ -1,0 +1,43 @@
+{
+  "name": "KarmaForge Swarm",
+  "description": "Self-Evolving Verifiable AI Trading Agent with On-Chain Reputation Feedback Loop",
+  "version": "1.0.0",
+  "endpoints": {
+    "mcp": "https://<your-ngrok-url>.ngrok-free.app/mcp",
+    "dashboard": "https://<your-vercel-or-streamlit-url>.app"
+  },
+  "capabilities": [
+    "trading",
+    "risk_management",
+    "yield_optimization",
+    "self_evolution",
+    "erc8004_validation"
+  ],
+  "components": [
+    {
+      "name": "Signal Agent",
+      "type": "market_data",
+      "description": "Fetches real-time market data via Kraken CLI"
+    },
+    {
+      "name": "Risk Guardian",
+      "type": "risk_management",
+      "description": "Dynamic risk scaling based on live ERC-8004 Reputation"
+    },
+    {
+      "name": "Strategy Agent",
+      "type": "execution",
+      "description": "RSI + momentum execution"
+    },
+    {
+      "name": "Validator Agent",
+      "type": "trust_layer",
+      "description": "Emits EIP-712 signed TradeIntents and Validation Artifacts"
+    },
+    {
+      "name": "Reflector Agent",
+      "type": "self_improvement",
+      "description": "Ollama-powered Reflexion loop for autonomous parameter tuning"
+    }
+  ]
+}

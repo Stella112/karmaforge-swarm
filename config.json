@@ -1,0 +1,20 @@
+{
+    "version": "1.0",
+    "last_updated": "2026-04-09T12:00:00Z",
+    "strategy": {
+        "rsi_oversold": 30,
+        "rsi_overbought": 70,
+        "momentum_threshold": 0.02,
+        "kraken_cex_weight": 0.60,
+        "aerodrome_lp_weight": 0.40
+    },
+    "risk": {
+        "base_position_size_usd": 100,
+        "max_drawdown_limit_pct": 0.10,
+        "kelly_fraction": 0.5,
+        "volatility_pause_threshold": 0.05
+    },
+    "swarm": {
+        "reflector_interval_hours": 4
+    }
+}

@@ -1,0 +1,8 @@
+langgraph==0.0.26
+langchain-ollama==0.1.1
+web3==6.15.1
+streamlit==1.32.0
+pandas==2.2.1
+python-dotenv==1.0.1
+requests==2.31.0
+sqlite3-api # using standard lib sqlite3, just adding minimal external dependencies here
