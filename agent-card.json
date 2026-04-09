@@ -17,27 +17,27 @@
     {
       "name": "Signal Agent",
       "type": "market_data",
-      "description": "Fetches real-time market data via Kraken CLI"
+      "description": "fetches real-time data via Kraken CLI public commands only (ticker, ohlc, orderbook)"
     },
     {
-      "name": "Risk Guardian",
+      "name": "Risk Guardian Agent",
       "type": "risk_management",
-      "description": "Dynamic risk scaling based on live ERC-8004 Reputation"
+      "description": "reads live ERC-8004 reputation score and dynamically scales position size, drawdown cap, Kelly fraction"
     },
     {
       "name": "Strategy Agent",
       "type": "execution",
-      "description": "RSI + momentum execution"
+      "description": "RSI + momentum on Kraken CEX (60% allocation) + simulated Aerodrome LP yield (40% allocation)"
     },
     {
       "name": "Validator Agent",
       "type": "trust_layer",
-      "description": "Emits EIP-712 signed TradeIntents and Validation Artifacts"
+      "description": "creates EIP-712 signed TradeIntent + validation artifact for EVERY decision"
     },
     {
       "name": "Reflector Agent",
       "type": "self_improvement",
-      "description": "Ollama-powered Reflexion loop for autonomous parameter tuning"
+      "description": "runs every 4 hours, uses summarizer, proposes 1-2 tiny numeric tweaks only"
     }
   ]
 }

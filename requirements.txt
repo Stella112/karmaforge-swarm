@@ -1,5 +1,5 @@
-langgraph==0.0.26
-langchain-ollama==0.1.1
+langgraph
+langchain-ollama
 web3==6.15.1
 streamlit==1.32.0
 pandas==2.2.1

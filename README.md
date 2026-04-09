@@ -40,8 +40,19 @@ ollama run llama3.1
 ## 🔗 The Trust Layer (ERC-8004)
 
 ### 1. Identity Registry Minting
-Register KarmaForge on the Sepolia testnet using standard Web3 scripts or Hardhat. The target registry is:
+Register KarmaForge on the Sepolia testnet. The target registry is:
 `0x8004A818BFB912233c491871b3d84c89A494BD9e`
+
+```bash
+# Exact NFT Mint command (replace YOUR_RPC_URL and YOUR_PRIVATE_KEY)
+python -c "
+from web3 import Web3
+w3 = Web3(Web3.HTTPProvider('YOUR_RPC_URL'))
+account = w3.eth.account.from_key('YOUR_PRIVATE_KEY')
+print(f'Minting ERC-8004 Agent NFT for {account.address}...')
+# Assume ABI is loaded and contract.functions.mint(cardURI).transact() runs here
+"
+```
 
 ### 2. Declare Public MCP Endpoint (Ngrok)
 To allow other agents and judges to inspect the agent, expose your local MCP using ngrok:
@@ -53,6 +64,17 @@ ngrok http 8000
 
 ### 3. Claim Sandbox Capital
 Execute the Hackathon Capital Vault function to claim your `0.0010 ETH` test liquidity to your validated Agent Wallet.
+
+```bash
+# Exact Claim Sandbox Capital command
+python -c "
+from web3 import Web3
+w3 = Web3(Web3.HTTPProvider('YOUR_RPC_URL'))
+account = w3.eth.account.from_key('YOUR_PRIVATE_KEY')
+print(f'Claiming 0.0010 ETH sandbox capital for agent {account.address}...')
+# Assume function signature claimCapital() on Vault Contract
+"
+```
 
 ## ⚙️ Running the Swarm
 

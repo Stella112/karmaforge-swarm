@@ -1,0 +1,18 @@
+# Environment
+.env
+venv/
+.venv/
+env/
+
+# Data & Logs
+*.db
+*.log
+agents/__pycache__/
+dashboard/__pycache__/
+tools/__pycache__/
+__pycache__/
+
+# Scratch & Temporary
+scratch/
+dashboard_output.log
+agent_output.log

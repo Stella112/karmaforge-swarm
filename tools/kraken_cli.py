@@ -11,7 +11,7 @@ class KrakenCLIAdapter:
     Executes commands securely using subprocess and parses JSON output.
     """
     def __init__(self):
-        self.base_cmd = ["kraken"]
+        self.base_cmd = ["/root/.cargo/bin/kraken"]
 
     def _execute(self, args: list) -> Optional[Dict[str, Any]]:
         cmd = self.base_cmd + args
@@ -37,12 +37,12 @@ class KrakenCLIAdapter:
 
     def get_ticker(self, pair: str) -> Optional[Dict[str, Any]]:
         """Fetches the latest ticker data for a given pair."""
-        return self._execute(["ticker", pair])
+        return self._execute(["ticker", pair, "-o", "json"])
         
     def get_ohlc(self, pair: str, interval: str = "60") -> Optional[Dict[str, Any]]:
         """Fetches OHLC (candlestick) data."""
-        return self._execute(["ohlc", pair, "--interval", interval])
+        return self._execute(["ohlc", pair, "--interval", interval, "-o", "json"])
         
     def get_orderbook(self, pair: str, depth: str = "10") -> Optional[Dict[str, Any]]:
         """Fetches the current orderbook."""
-        return self._execute(["orderbook", pair, "--depth", depth])
+        return self._execute(["orderbook", pair, "--depth", depth, "-o", "json"])

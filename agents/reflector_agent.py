@@ -24,7 +24,12 @@ class ReflectorAgent:
         Recent activity summary: {recent_trades}
         
         Propose exactly ONE conservative numeric tweak to the configuration to improve risk-adjusted returns.
-        Return ONLY valid JSON like: {{"target": "strategy.rsi_oversold", "new_value": 32, "reason": "Adjusting entry due to recent drawdowns"}}
+        You MUST return ONLY valid raw JSON with precisely these 3 keys:
+        - "target": string, representing the config key (e.g. "strategy.rsi_oversold" or "risk.max_drawdown_limit_pct")
+        - "new_value": float, the new conservative value
+        - "reason": string, a short 1-sentence logic explanation for the change.
+        
+        Do not output markdown code blocks. Just output raw JSON.
         """
         
         try:
