@@ -1,97 +1,106 @@
-# KarmaForge Swarm 🗡️
+<div align="center">
+  <img src="./assets/dashboard_preview.jpg" alt="KarmaForge Dashboard" width="100%"/>
+</div>
+<br>
 
-**Self-Evolving Verifiable AI Trading Agent with On-Chain Reputation Feedback Loop.**
-Built for the lablab.ai "AI Trading Agents" Hackathon.
+<div align="center">
+  <i>The Trustless, Self-Evolving AI Trading Swarm Governed by On-Chain Reputation.</i>
+</div>
 
-## 🚀 Overview
-KarmaForge is a sovereign 5-agent LangGraph swarm powered locally by Ollama. It uniquely uses its ERC-8004 Reputation Score computationally as a baseline risk parameter ("Karma"), and reflects upon its own decisions every 4 hours to rewrite its source parameters. All decisions are output as EIP-712 Validation Artifacts.
+<p align="center">
+  <img src="https://img.shields.io/badge/Track-ERC--8004-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Challenge-Kraken-purple?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Live-Sepolia_Testnet-green?style=for-the-badge" />
+</p>
 
-## 🛠 Prerequisites & Installation
+---
 
-### 1. Execute Environment Setup
-If using a Linux VPS, ensure Python 3.11+ is installed.
+## The Problem: Black Box AI 🕳️
 
+The crypto ecosystem is currently overwhelmed with autonomous "trading agents," but nearly all of them operate as complete black boxes. Users are forced to entrust liquidity to an opaque script with no verifiable track record, no mathematical risk-capping, and zero transparency into *why* an agent made a decision. 
+
+If an AI loses your capital, it simply vanishes. There is no accountability, and no evolution derived from public failure. This makes allocating capital to autonomous agents wildly irresponsible for serious treasuries.
+
+---
+
+## 💡 The Solution: Verifiable Evolution
+
+**KarmaForge Swarm** strips away the opacity and replaces it with mathematical transparency and self-improvement by locking the agent's risk appetite strictly to its on-chain ERC-8004 Reputation ("Karma").
+
+*   **Verifiable Execution:** Every single micro-decision the swarm makes yields a mathematically hashed EIP-712 strategy checkpoint posted to Sepolia, turning the "Black Box" into a glass house.
+*   **Dynamic Capital Shielding:** Our Risk Guardian scales position capital logarithmically against the live Karma Score. If the agent makes bad calls, the network slashes its Karma, and the agent *automatically protects capital* by mathematically restricting its own max drawdown and trade sizes.
+*   **Autonomous Evolution:** Every two hours, the local Reflector LLM forces the agent to stare in the mirror—analyzing its own Realized PnL and Win Rate ledger—to autonomously optimize its base code logic without any human prompts. 
+
+---
+
+## 🏗️ Architecture & Tech Stack
+
+```mermaid
+graph TD
+    A[Kraken Market API] --> B(Signal Scanner Agent)
+    B --> C{Strategy Engine}
+    C --> |Propose Entry/Exit| D(Risk Guardian)
+    
+    E[(ERC-8004 Reputation Registry)] -.-> |Fetch Live Karma| D
+    
+    D --> |Scales $ bounds & Approves| F(Validator Agent)
+    F --> |Executes Trades / Realizes PnL| G[Kraken / Database]
+    F --> |Signs EIP-712 Checkpoint| H[(ERC-8004 Validation Registry)]
+    
+    I[Reflector Agent] --> |Reads 2HR PnL History| G
+    I -.-> |Mutates Configurations| C
+```
+
+**Stack Highlights:**
+*   **Agent Logic:** `LangGraph` & `Python 3.12`
+*   **Intelligence:** 100% Sovereign Local LLM processing via `Ollama` (`Llama-3.1`)
+*   **On-Chain Validation:** `Web3` & Sepolia ERC-8004 Shared Registries
+*   **Data Lake & View:** `SQLite3` & `Streamlit` (Real-Time Cyber-Finance Dashboard)
+
+---
+
+## 🎯 Hackathon Tracks Targeted
+
+**1. ERC-8004 Track**
+KarmaForge proves the absolute baseline value of the `AgentRegistry` and `ReputationRegistry`. By consuming its literal on-chain karma to artificially constrain its own execution sizes inside a custom Risk Guardian, it maps objective Reputation to concrete Financial Constraint.
+
+**2. Kraken Track**
+Built utilizing the Kraken API environment to realize algorithmic profits inside Risk Router limitations with mathematical precision, strictly ranked by the Realized Net PnL algorithms.
+
+---
+
+## 🚀 Quick Start (Frictionless Testing)
+
+### 🔴 Live Demo (No local build required)
+👉 **[http://38.49.209.149:8501](http://38.49.209.149:8501)**
+
+### 💻 Local Spin-Up
+
+**1. Clone & Install**
 ```bash
-# 1. Clone repository
-git clone https://github.com/your-repo/karmaforge-swarm
+git clone https://github.com/your-username/karmaforge-swarm
 cd karmaforge-swarm
-
-# 2. Setup Virtual Environment
-python3 -m venv venv
-source venv/bin/activate
-
-# 3. Install Python Dependencies
+python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Kraken CLI Installation
-Install the official Kraken CLI exactly:
-```bash
-curl --proto '=https' --tlsv1.2 -LsSf https://github.com/krakenfx/kraken-cli/releases/latest/download/kraken-cli-installer.sh | sh
+**2. Configure Environment (`.env`)**
+```env
+# Fill these with your sandbox keys
+KRAKEN_API_KEY="your_key"
+KRAKEN_PRIVATE_KEY="your_secret"
+AGENT_WALLET_PRIVATE_KEY="your_no_0x_pk"
+SEPOLIA_RPC_URL="https://ethereum-sepolia-rpc.publicnode.com"
 ```
 
-### 3. Start Local Ollama
-We reuse the existing local Ollama (Aether Persona). Assuming it's installed:
+**3. Mint Agent Identity & Run**
 ```bash
-ollama serve &
-ollama run llama3.1
+# Mint your fresh ERC-8004 identity (writes AGENT_ID to .env)
+python mint_agent.py 
+
+# Start the sovereign swarm daemon
+nohup python run_karmaforge.py > agent.log 2>&1 &
+
+# Boot the Local Dashboard
+streamlit run dashboard/streamlit_app.py
 ```
-
-## 🔗 The Trust Layer (ERC-8004)
-
-### 1. Identity Registry Minting
-Register KarmaForge on the Sepolia testnet. The target registry is:
-`0x8004A818BFB912233c491871b3d84c89A494BD9e`
-
-```bash
-# Exact NFT Mint command (replace YOUR_RPC_URL and YOUR_PRIVATE_KEY)
-python -c "
-from web3 import Web3
-w3 = Web3(Web3.HTTPProvider('YOUR_RPC_URL'))
-account = w3.eth.account.from_key('YOUR_PRIVATE_KEY')
-print(f'Minting ERC-8004 Agent NFT for {account.address}...')
-# Assume ABI is loaded and contract.functions.mint(cardURI).transact() runs here
-"
-```
-
-### 2. Declare Public MCP Endpoint (Ngrok)
-To allow other agents and judges to inspect the agent, expose your local MCP using ngrok:
-```bash
-ngrok http 8000
-# Copy the resulting HTTPS URL
-# Paste into agent-card.json -> "endpoints": { "mcp": "https://..." }
-```
-
-### 3. Claim Sandbox Capital
-Execute the Hackathon Capital Vault function to claim your `0.0010 ETH` test liquidity to your validated Agent Wallet.
-
-```bash
-# Exact Claim Sandbox Capital command
-python -c "
-from web3 import Web3
-w3 = Web3(Web3.HTTPProvider('YOUR_RPC_URL'))
-account = w3.eth.account.from_key('YOUR_PRIVATE_KEY')
-print(f'Claiming 0.0010 ETH sandbox capital for agent {account.address}...')
-# Assume function signature claimCapital() on Vault Contract
-"
-```
-
-## ⚙️ Running the Swarm
-
-Start the agent in a `screen` or `tmux` session to ensure it maintains sovereignty without an active SSH connection:
-
-```bash
-screen -S karmaforge
-python run_karmaforge.py
-# Press Ctrl+A, D to detach
-```
-
-## 📊 Watching the Evolution (Dashboard)
-
-Monitor your agent's Karma Score, EIP-712 artifacts, and Evolution Timeline via Streamlit:
-
-```bash
-cd dashboard
-streamlit run streamlit_app.py
-```
-*(The dashboard is read-only. KarmaForge does not accept manual prompting. It is 100% sovereign.)*
