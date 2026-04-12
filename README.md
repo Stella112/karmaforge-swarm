@@ -13,6 +13,11 @@
   <img src="https://img.shields.io/badge/Live-Sepolia_Testnet-green?style=for-the-badge" />
 </p>
 
+<p align="center">
+  <b>🏆 Identity Registry:</b> Agent ID <a href="https://sepolia.etherscan.io/token/0x97b07dDc405B0c28B17559aFFE63BdB3632d0ca3?a=52">#52</a><br>
+  <b>🔗 Agent EOA (CA):</b> <a href="https://sepolia.etherscan.io/address/0x1DCc32097941b199E0292D4E5d0C4492149CFd4b"><code>0x1DCc32097941b199E0292D4E5d0C4492149CFd4b</code></a>
+</p>
+
 ---
 
 ## The Problem: Black Box AI 🕳️
