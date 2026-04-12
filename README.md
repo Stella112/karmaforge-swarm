@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/dashboard_preview.jpg" alt="KarmaForge Dashboard" width="100%"/>
+  <img src="./assets/hero_banner.png" alt="KarmaForge Dashboard" width="100%"/>
 </div>
 <br>
 
